@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa322c53454393ed775cfe4807d54a50",
+    "content-hash": "656267d3b110b9fac6a6f1ce3777fb16",
     "packages": [
         {
             "name": "brick/math",
@@ -431,6 +431,161 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "elegant-bro/arrayee",
+            "version": "0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elegant-bro/arrayee.git",
+                "reference": "bb7934649b1c3d2bc1ead0da425c55daaa7a417f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elegant-bro/arrayee/zipball/bb7934649b1c3d2bc1ead0da425c55daaa7a417f",
+                "reference": "bb7934649b1c3d2bc1ead0da425c55daaa7a417f",
+                "shasum": ""
+            },
+            "require": {
+                "elegant-bro/interfaces": "^1.0",
+                "ext-json": "*",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.64",
+                "phpstan/phpstan-phpunit": "^0.12.17",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElegantBro\\Arrayee\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Stepanets",
+                    "email": "pahhan.ne@gmail.com"
+                },
+                {
+                    "name": "Dmitry Anikeev",
+                    "email": "anikeev.dmitry@outlook.com"
+                },
+                {
+                    "name": "Artem Dekhtyar",
+                    "email": "m@artemd.ru"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/elegant-bro/arrayee/issues",
+                "source": "https://github.com/elegant-bro/arrayee/tree/0.1.5"
+            },
+            "time": "2022-08-24T10:54:04+00:00"
+        },
+        {
+            "name": "elegant-bro/interfaces",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elegant-bro/interfaces.git",
+                "reference": "2fb4aecb3d36e386ee9ee229f594d178db35f787"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elegant-bro/interfaces/zipball/2fb4aecb3d36e386ee9ee229f594d178db35f787",
+                "reference": "2fb4aecb3d36e386ee9ee229f594d178db35f787",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.4 || ^7.0 || ^8.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElegantBro\\Interfaces\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Stepanets",
+                    "email": "pahhan.ne@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/elegant-bro/interfaces/issues",
+                "source": "https://github.com/elegant-bro/interfaces/tree/1.2.0"
+            },
+            "time": "2021-02-05T10:02:02+00:00"
+        },
+        {
+            "name": "elegant-bro/stringify",
+            "version": "0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elegant-bro/stringify.git",
+                "reference": "e616e82d971ac7c748d53350622b160add089fa3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elegant-bro/stringify/zipball/e616e82d971ac7c748d53350622b160add089fa3",
+                "reference": "e616e82d971ac7c748d53350622b160add089fa3",
+                "shasum": ""
+            },
+            "require": {
+                "elegant-bro/interfaces": "^1.0.0",
+                "ext-json": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^9.5",
+                "symplify/easy-coding-standard": "^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "ElegantBro\\Stringify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Stepanets",
+                    "email": "pahhan.ne@gmail.com"
+                },
+                {
+                    "name": "Dmitry Anikeev",
+                    "email": "anikeev.dmitry@outlook.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/elegant-bro/stringify/issues",
+                "source": "https://github.com/elegant-bro/stringify/tree/0.4.1"
+            },
+            "time": "2022-08-24T10:55:56+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -2253,6 +2408,220 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "otis22/php-interfaces",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/php-interfaces.git",
+                "reference": "2fe0c936f6729911f3e02878bc8af83966c10e4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/php-interfaces/zipball/2fe0c936f6729911f3e02878bc8af83966c10e4e",
+                "reference": "2fe0c936f6729911f3e02878bc8af83966c10e4e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpunit": "^9.1",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Otis22\\PhpInterfaces\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir ROmanichev",
+                    "email": "pro100print@yahoo.com"
+                }
+            ],
+            "description": "Interfaces for OOP php projects",
+            "support": {
+                "issues": "https://github.com/otis22/php-interfaces/issues",
+                "source": "https://github.com/otis22/php-interfaces/tree/1.1.1"
+            },
+            "time": "2021-02-07T19:00:13+00:00"
+        },
+        {
+            "name": "otis22/vetmanager-rest-api",
+            "version": "0.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/vetmanager-rest-api.git",
+                "reference": "f32cca423f1df54d1a7179d79acaca1abce33694"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/vetmanager-rest-api/zipball/f32cca423f1df54d1a7179d79acaca1abce33694",
+                "reference": "f32cca423f1df54d1a7179d79acaca1abce33694",
+                "shasum": ""
+            },
+            "require": {
+                "elegant-bro/arrayee": "^0.1.0",
+                "elegant-bro/interfaces": "^1.1",
+                "elegant-bro/stringify": ">=0.3.1",
+                "ext-json": "*",
+                "otis22/php-interfaces": "^1.1",
+                "otis22/vetmanager-token": "^0.2.0",
+                "php": ">=7.3 || ^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.0",
+                "otis22/php-coverage-checker": "^1.2",
+                "otis22/vetmanager-url": "^0.3.0",
+                "php-coveralls/php-coveralls": "1.0.1",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpcov": "^8.0",
+                "phpunit/phpunit": "^9.1",
+                "squizlabs/php_codesniffer": "3.*",
+                "symfony/deprecation-contracts": "^2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Otis22\\VetmanagerRestApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "otis22",
+                    "email": "vromanichev24@gmail.com"
+                }
+            ],
+            "description": "Vetmanager - CRM for veterinary. This is library for conveniently work with Vetmanager REST API.",
+            "support": {
+                "issues": "https://github.com/otis22/vetmanager-rest-api/issues",
+                "source": "https://github.com/otis22/vetmanager-rest-api/tree/0.1.11"
+            },
+            "time": "2023-03-02T10:04:09+00:00"
+        },
+        {
+            "name": "otis22/vetmanager-token",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/vetmanager-token.git",
+                "reference": "ad5328044b3160eb17dc8ae0481b6b1e746b88d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/vetmanager-token/zipball/ad5328044b3160eb17dc8ae0481b6b1e746b88d5",
+                "reference": "ad5328044b3160eb17dc8ae0481b6b1e746b88d5",
+                "shasum": ""
+            },
+            "require": {
+                "elegant-bro/interfaces": "^1.1",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.1",
+                "otis22/php-interfaces": "^1.0",
+                "otis22/vetmanager-url": "~0.1"
+            },
+            "require-dev": {
+                "otis22/php-coverage-checker": "^1.2",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpcov": "^8.0",
+                "phpunit/phpunit": "^9.1",
+                "sensiolabs/security-checker": "^6.0",
+                "squizlabs/php_codesniffer": "3.*",
+                "wapmorgan/php-deprecation-detector": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Otis22\\VetmanagerToken\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "otis",
+                    "email": "vromanichev24@gmail.com"
+                }
+            ],
+            "description": "Project for using token auth for Vetmanager Rest API",
+            "support": {
+                "issues": "https://github.com/otis22/vetmanager-token/issues",
+                "source": "https://github.com/otis22/vetmanager-token/tree/0.2.2"
+            },
+            "time": "2021-02-22T18:30:10+00:00"
+        },
+        {
+            "name": "otis22/vetmanager-url",
+            "version": "0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/otis22/vetmanager-url.git",
+                "reference": "82327880844d75c1b16a7850bcb192099c490a05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/otis22/vetmanager-url/zipball/82327880844d75c1b16a7850bcb192099c490a05",
+                "reference": "82327880844d75c1b16a7850bcb192099c490a05",
+                "shasum": ""
+            },
+            "require": {
+                "elegant-bro/interfaces": "^1.1",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.1"
+            },
+            "require-dev": {
+                "otis22/php-coverage-checker": "^1.2",
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpcov": "^8.0",
+                "phpunit/phpunit": "^9.1",
+                "sensiolabs/security-checker": "^6.0",
+                "squizlabs/php_codesniffer": "3.*",
+                "wapmorgan/php-deprecation-detector": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Otis22\\VetmanagerUrl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "otis",
+                    "email": "vromanichev24@gmail.com"
+                }
+            ],
+            "description": "Vetmanager - CRM for veterinary. All vetmanager clients has access to their crm via URL. Now Vetmanager is changing server architecure and URL can changes. This project for getting full URL by only first part. Use this library avoid hardcode.",
+            "support": {
+                "issues": "https://github.com/otis22/vetmanager-url/issues",
+                "source": "https://github.com/otis22/vetmanager-url/tree/0.3.2"
+            },
+            "time": "2021-01-03T14:24:13+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -7950,5 +8319,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
