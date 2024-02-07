@@ -22,7 +22,9 @@ sail artisan db:seed
 
 sail npm install
 
-npm install -D tailwindcss postcss autoprefixer
+sail npm install -D tailwindcss postcss autoprefixer 
+
+sail npm install -D @tailwindcss/forms
 
 sail npm install alpinejs
 
