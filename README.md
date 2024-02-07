@@ -16,10 +16,15 @@ docker run --rm \
 После запуска контейнеров вы можете подключиться к экземпляру MySQL в вашем приложении, установив для DB_HOSTпеременной среды в файле вашего приложения .envзначение mysql.
 
 sail artisan key:generate
+
 sail artisan migrate
+
 sail artisan db:seed
 
 sail npm install
+
 npm install -D tailwindcss postcss autoprefixer
+
 sail npm install alpinejs
+
 sail npm run dev
