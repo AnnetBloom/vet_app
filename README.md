@@ -11,15 +11,21 @@ docker run --rm \
 
 ./vendor/bin/sail up -d
 
-настроить env
-настроить алиас sail
+настроить env, настроить алиас sail. 
 После запуска контейнеров вы можете подключиться к экземпляру MySQL в вашем приложении, установив для DB_HOSTпеременной среды в файле вашего приложения .envзначение mysql.
 
 sail artisan key:generate
+
 sail artisan migrate
+
 sail artisan db:seed
 
 sail npm install
-npm install -D tailwindcss postcss autoprefixer
+
+sail npm install -D tailwindcss postcss autoprefixer 
+
+sail npm install -D @tailwindcss/forms
+
 sail npm install alpinejs
+
 sail npm run dev
