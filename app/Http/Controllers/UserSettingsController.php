@@ -13,12 +13,22 @@ use function Otis22\VetmanagerUrl\url;
 
 class UserSettingsController extends Controller
 {
+    /**
+     * Form to save key
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View;
+     */
     public function index(Request $request): View
     {
         $user = Auth::user()->load('keySettings');
         return view('user.api_settings', ['user' => $user]);
     }
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreSettingsRequest $request): RedirectResponse 
     {
         $user = Auth::user()->load('keySettings');
@@ -31,6 +41,12 @@ class UserSettingsController extends Controller
         return redirect(route('user_settings'));
     }
 
+    /**
+     * Ajax get user url
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response json
+     */
     public function getUserUrl(Request $request)
     {
         $validated = $request->validate([

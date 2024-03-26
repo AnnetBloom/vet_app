@@ -6,10 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreClientRequest;
 use App\Vetmanager;
 
+/**
+ * Clients 
+ */
 class ClientController extends Controller
 {
+    /**
+     * @var string
+     */
     public $model = 'client';
 
+    /**
+     * 
+     * @param \Illuminate\Http\Request $request
+     */
     public function index(Request $request)
     {
         $vet = new Vetmanager();
@@ -20,6 +30,8 @@ class ClientController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * 
+     * @param \Illuminate\Http\Request $request
      */
     public function create(Request $request)
     {
@@ -31,6 +43,8 @@ class ClientController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
      */
     public function store(StoreClientRequest $request)
     {
@@ -46,6 +60,9 @@ class ClientController extends Controller
     }
     /**
      * Display the specified resource.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param string $id
      */
     public function show(Request $request, string $id)
     {
@@ -61,6 +78,9 @@ class ClientController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param string $id
+     * @param \Illuminate\Http\Request $request
      */
     public function edit(string $id, Request $request)
     {
@@ -73,6 +93,9 @@ class ClientController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param string $id
      */
     public function update(StoreClientRequest $request, string $id)
     {
@@ -89,6 +112,8 @@ class ClientController extends Controller
 
     /**
      * Удалить всех питомцев, потом самого клиента
+     * 
+     * @param string $id
      */
     public function destroy(string $id)
     {

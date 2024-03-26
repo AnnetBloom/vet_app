@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePetRequest;
 use App\Vetmanager;
 
+/**
+ * Pets
+ */
 class PetController extends Controller
 {
+    /**
+     * @var string
+     */
     public $model = 'pet';
 
     /**
      * Show the form for creating a new resource.
+     * 
+     * @param \Illuminate\Http\Request $request
      */
     public function create(Request $request)
     {
@@ -23,6 +31,8 @@ class PetController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
      */
     public function store(StorePetRequest $request)
     {
@@ -40,6 +50,8 @@ class PetController extends Controller
 
     /**
      * Display the specified resource.
+     * 
+     * @param string $id from url
      */
     public function show(string $id)
     {
@@ -51,6 +63,9 @@ class PetController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param string $id from url
+     * @param \Illuminate\Http\Request $request
      */
     public function edit(string $id, Request $request)
     {
@@ -63,6 +78,9 @@ class PetController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param string $id from url
      */
     public function update(StorePetRequest $request, string $id)
     {
@@ -79,6 +97,8 @@ class PetController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * @param string $id from url
      */
     public function destroy(string $id)
     {

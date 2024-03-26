@@ -23,17 +23,30 @@ use Otis22\VetmanagerRestApi\Query\Sort\AscBy;
 
 
 /**
- * https://github.com/otis22/vetmanager-rest-api
+ * Class Vetmanager
+ * 
+ * @see https://github.com/otis22/vetmanager-rest-api
  * 
  * $model - client|pet
  */
 
 class Vetmanager 
 {
+    /**
+     * @var string
+     */
     private $userUrl;
 
+    /**
+     * @var string
+     */
     private $userApiKey;
 
+    /**
+     * Limit per page
+     * 
+     * @var int
+     */
     private $limit = 50;
 
     public function __construct()
@@ -45,8 +58,10 @@ class Vetmanager
 
     /**
      * API models array
+     * 
+     * @return array<string, string>
      */
-    private function _model()
+    private function model()
     {
         return [
             'client' => 'client',
@@ -56,16 +71,18 @@ class Vetmanager
     
     
     /**
-     * Get PagedQuery clients or pets
+     * @info Get PagedQuery clients or pets
      * 
-     * $request Request 
-     * $model - API model
-     * $fieldsArray - array (field => value)
-     * $limitP integer | null 
+     * @param \Illuminate\Http\Request $request
+     * @param string $model API model
+     * @param array $fieldsArray array(field => value)
+     * @param int|null $limitP
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     * 
      *  {{Domain URL}}/rest/api/client
      *  {{Domain URL}}/rest/api/pet
      */
-    public function getAll(Request $request, $model, $fieldsArray = [], $limitP = null)
+    public function getAll(Request $request, string $model, $fieldsArray = [], $limitP = null)
     {
         $page = $request->page ?: 1;
         $limit = $limitP ?: $this->limit;
@@ -76,8 +93,8 @@ class Vetmanager
             )
         );
 
-        if ($model == $this->_model()['client']) {
-            $filters = $this->_searchClient($request);
+        if ($model == $this->model()['client']) {
+            $filters = $this->searchClient($request);
         }
 
         if (!empty($fieldsArray)) {
@@ -96,7 +113,7 @@ class Vetmanager
             $limit,
             $page-1
         );
-        $response = $this->_request('GET', $model, $query);
+        $response = $this->request('GET', $model, $query);
 
         if (isset($response['data']['totalCount'])) {
             $paginator = new LengthAwarePaginator(
@@ -109,12 +126,14 @@ class Vetmanager
 
     /**
      * GET by id
-     * $model - string API model 
-     * $id integer
+     * 
+     * @param string $model string API model 
+     * @param int $id
+     * @return array response
      */
     public function getById($model, $id)
     {
-        $response = $this->_request('GET', $model, null, $id);
+        $response = $this->request('GET', $model, null, $id);
         if (isset($response['data'][$model])) {
             return $response['data'][$model];
         }
@@ -122,40 +141,49 @@ class Vetmanager
     }
 
     /**
+     * Create request
      * 
-     * $model - string API model
-     * $data array
+     * @param string $model API model
+     * @param array $data 
+     * @return array response
      */
     public function createRequest($model, $data)
     {
-        return $this->_request('POST', $model, $data);
+        return $this->request('POST', $model, $data);
     }
 
     /**
+     * Update request
      * 
-     * $model - string API model
-     * $data array
-     * $id integer
+     * @param string $model API model
+     * @param array $data
+     * @param int $id
+     * @return array response
      */
     public function updateRequest($model, $data, $id)
     {
-        return $this->_request('PUT', $model, $data, $id);
+        return $this->request('PUT', $model, $data, $id);
     }
 
     /**
-     * $model - string API model
-     * $id integer
+     * Delete request
+     * 
+     * @param string $model API model
+     * @param int $id 
+     * @return array response
      */
     public function deleteRequest($model, $id)
     {
-        return $this->_request('DELETE', $model, null, $id);
+        return $this->request('DELETE', $model, null, $id);
     }
 
     /**
      * Client search filters
-     * $request Request
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return Otis22\VetmanagerRestApi\Query\Filters
      */
-    private function _searchClient(Request $request)
+    private function searchClient(Request $request)
     {
         $filtersArray = [];
         $search = $request->search ?: null;
@@ -205,7 +233,9 @@ class Vetmanager
 
     /**
      * Delete client with his pets
-     * $client_id integer
+     * 
+     * @param int $client_id
+     * @return array{result:string, bool}
      */
     public function deleteClient($client_id)
     {
@@ -221,13 +251,13 @@ class Vetmanager
                 new StringValue('deleted')
             )
         );
-        $ownerPets = $this->_request('GET', $this->_model()['pet'], $filters);
+        $ownerPets = $this->request('GET', $this->model()['pet'], $filters);
 
         if (isset($ownerPets['data']['pet'])) {
             $petDeleteFails = [];
             foreach ($ownerPets['data']['pet'] as $v) {
                 // Delete pet
-                $response = $this->_request('DELETE', $this->_model()['pet'], null, $v['id']);
+                $response = $this->request('DELETE', $this->model()['pet'], null, $v['id']);
                 if (!isset($response['success']) || !$response['success']) {
                     $petDeleteFails[] = $v['id'];
                 }
@@ -235,7 +265,7 @@ class Vetmanager
 
             if (empty($petDeleteFails)) {
                 // Delete client itself
-                $response = $this->_request('DELETE', $this->_model()['client'], null, $client_id);
+                $response = $this->request('DELETE', $this->model()['client'], null, $client_id);
                 if (!isset($response['success']) || !$response['success']) {
                     return ['result' => false];
                 }
@@ -250,12 +280,16 @@ class Vetmanager
 
     /**
      * Make request to API Vetmanager
-     * $method - HTTP method
-     * $model - API model (client or pet or another)
-     * $query - query object or array
-     * $id integer|null
+     * 
+     * @param string $method HTTP method
+     * @param string $model API model (client or pet or another)
+     * @param Otis22\VetmanagerRestApi\Query\PagedQuery|Otis22\VetmanagerRestApi\Query\Filters|array|null $query
+     * @param int|null $id
+     * 
+     * @throw Throwable
+     * @return array response
      */
-    private function _request($method, $model, $query = null, $id = null)
+    private function request($method, $model, $query = null, $id = null)
     {
         try {
             $requestBody = [

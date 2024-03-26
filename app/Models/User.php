@@ -44,6 +44,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * Get key settings associated with the user
+     */
     public function keySettings(): HasOne {
         return $this->hasOne(UserSetting::class);
     }

@@ -20,8 +20,16 @@ class UserSetting extends Model
         'key'
     ];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * Get the user that owns settings
+     */
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
