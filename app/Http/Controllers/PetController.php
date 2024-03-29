@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePetRequest;
 use App\Vetmanager;
 
@@ -23,8 +24,8 @@ class PetController extends Controller
      */
     public function create(Request $request)
     {
-        $vet = new Vetmanager();
-        $petTypes = $vet->getAll($request, 'petType');
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
+        $petTypes = $vet->getLimited($request, 'petType');
 
         return view('pet.edit', compact('petTypes'));
     }
@@ -37,7 +38,7 @@ class PetController extends Controller
     public function store(StorePetRequest $request)
     {
         $validated = $request->validated();
-        $response = (new Vetmanager())->createRequest($this->model, $validated);
+        $response = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->createRequest($this->model, $validated);
 
         if (isset($response['success']) && $response['success']) {
             session()->flash('success', __('main.saved'));
@@ -55,7 +56,7 @@ class PetController extends Controller
      */
     public function show(string $id)
     {
-        $vet = new Vetmanager();
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
         $pet = $vet->getById($this->model, $id);
 
         return view('pet.show', compact('pet'));
@@ -69,8 +70,8 @@ class PetController extends Controller
      */
     public function edit(string $id, Request $request)
     {
-       $vet = new Vetmanager();
-       $petTypes = $vet->getAll($request, 'petType');
+       $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
+       $petTypes = $vet->getLimited($request, 'petType');
        $pet = $vet->getById($this->model, $id);
 
        return view('pet.edit', compact('pet', 'id', 'petTypes'));
@@ -85,7 +86,7 @@ class PetController extends Controller
     public function update(StorePetRequest $request, string $id)
     {
         $validated = $request->validated();
-        $response = (new Vetmanager())->updateRequest($this->model, $validated, $id);
+        $response = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->updateRequest($this->model, $validated, $id);
         if (isset($response['success']) && $response['success']) {
             session()->flash('success', __('main.saved'));
         } else {
@@ -102,7 +103,7 @@ class PetController extends Controller
      */
     public function destroy(string $id)
     {
-        $response = (new Vetmanager())->deleteRequest($this->model, $id);
+        $response = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->deleteRequest($this->model, $id);
 
         if ($response) {
             session()->flash('success', __('main.deleted'));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreClientRequest;
 use App\Vetmanager;
 
@@ -22,8 +23,8 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $vet = new Vetmanager();
-        $clients = $vet->getAll($request, $this->model);
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
+        $clients = $vet->getLimited($request, $this->model);
 
         return view('client.index', compact('clients'));
     }
@@ -35,8 +36,8 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        $vet = new Vetmanager();
-        $cities = $vet->getAll($request, 'city', [], 50);
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
+        $cities = $vet->getLimited($request, 'city', [], 50);
 
         return view('client.create', compact('cities'));
     }
@@ -49,7 +50,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $validated = $request->validated();
-        $vetRequest = (new Vetmanager())->createRequest($this->model, $validated);
+        $vetRequest = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->createRequest($this->model, $validated);
         
         if (isset($vetRequest['success']) && $vetRequest['success']) {
             session()->flash('success', __('main.saved'));
@@ -66,13 +67,13 @@ class ClientController extends Controller
      */
     public function show(Request $request, string $id)
     {
-        $vet = new Vetmanager();
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
         $client = $vet->getById($this->model, $id);
 
         $filters = [
             'owner_id' => $id
         ];
-        $pets = $vet->getAll($request, 'pet', $filters);
+        $pets = $vet->getLimited($request, 'pet', $filters);
         return view('client.show', compact('client', 'id', 'pets'));
     }
 
@@ -84,9 +85,9 @@ class ClientController extends Controller
      */
     public function edit(string $id, Request $request)
     {
-        $vet = new Vetmanager();
+        $vet = new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey());
         $client = $vet->getById($this->model, $id);
-        $cities = $vet->getAll($request, 'city', [], 0);
+        $cities = $vet->getLimited($request, 'city', [], 0);
         
         return view('client.edit', compact('client', 'id', 'cities'));
     }
@@ -100,7 +101,7 @@ class ClientController extends Controller
     public function update(StoreClientRequest $request, string $id)
     {
         $validated = $request->validated();
-        $vetRequest = (new Vetmanager())->updateRequest($this->model, $validated, $id);
+        $vetRequest = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->updateRequest($this->model, $validated, $id);
         if (isset($vetRequest['success']) && $vetRequest['success']) {
             session()->flash('success', __('main.saved'));
         } else {
@@ -117,7 +118,7 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        $response = (new Vetmanager())->deleteClient($id);
+        $response = (new Vetmanager(Auth::user()->getUrl(), Auth::user()->getKey()))->deleteClient($id);
         if ($response['result']) {
             session()->flash('success', __('main.deleted')); 
         } else {

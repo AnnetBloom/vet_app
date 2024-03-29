@@ -50,4 +50,21 @@ class User extends Authenticatable
     public function keySettings(): HasOne {
         return $this->hasOne(UserSetting::class);
     }
+
+    /**
+     * Shorts to get url from user_settings model
+     */
+    public function getUrl()
+    {
+        return $this->keySettings->url;
+    }
+
+    /**
+     * Shorts to get API key from user_settings model
+     */
+    public function getKey()
+    {
+        return $this->keySettings->key;
+    }
+
 }

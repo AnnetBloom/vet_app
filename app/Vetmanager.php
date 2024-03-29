@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Throwable;
 use GuzzleHttp\Client;
@@ -33,11 +32,13 @@ use Otis22\VetmanagerRestApi\Query\Sort\AscBy;
 class Vetmanager 
 {
     /**
+     * base_uri
      * @var string
      */
     private $userUrl;
 
     /**
+     * headers param
      * @var string
      */
     private $userApiKey;
@@ -49,11 +50,16 @@ class Vetmanager
      */
     private $limit = 50;
 
-    public function __construct()
+    /**
+     * Init headers param and base_uri
+     * 
+     * @param string $url User url
+     * @param string $key User key
+     */
+    public function __construct(string $url, string $key)
     {
-        $user = Auth::user()->load('keySettings');
-        $this->userUrl = $user->keySettings->url;
-        $this->userApiKey = $user->keySettings->key;
+        $this->userUrl = $url;
+        $this->userApiKey = $key;
     }
 
     /**
@@ -71,18 +77,18 @@ class Vetmanager
     
     
     /**
-     * @info Get PagedQuery clients or pets
+     * Get PagedQuery items
      * 
      * @param \Illuminate\Http\Request $request
      * @param string $model API model
-     * @param array $fieldsArray array(field => value)
+     * @param array $fieldsArray array(model field => value)
      * @param int|null $limitP
      * @return Illuminate\Pagination\LengthAwarePaginator
      * 
      *  {{Domain URL}}/rest/api/client
      *  {{Domain URL}}/rest/api/pet
      */
-    public function getAll(Request $request, string $model, $fieldsArray = [], $limitP = null)
+    public function getLimited(Request $request, string $model, $fieldsArray = [], $limitP = null)
     {
         $page = $request->page ?: 1;
         $limit = $limitP ?: $this->limit;
